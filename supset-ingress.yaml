@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    kubernetes.io/tls-acme: "true"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: superset-dashboard
+  namespace: bi 
+spec:
+  rules:
+  - host: xxx.xxxxx.com
+    http:
+      paths:
+      - backend:
+          serviceName: superset-dashboard
+          servicePort: 443
+  tls:
+  - hosts:
+    - xxx.xxxxx.com
+    secretName: tls-xxx.xxxxx.com
